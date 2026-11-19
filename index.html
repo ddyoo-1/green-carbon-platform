@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7f4">
+    <title>首页 - 绿碳智算</title>
+    
+    
+<link rel="icon" href="data:,">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Microsoft YaHei', sans-serif;
+}
+:root {
+    --primary-green: #2ecc71;
+    --dark-green: #27ae60;
+    --light-blue: #ecf0f1;
+    --dark-gray: #34495e;
+    --white: #ffffff;
+    --light-gray: #f5f5f5;
+    --border-gray: #ddd;
+    --orange: #f39c12;
+}
+:root {
+    --site-ink: #1d2926;
+    --site-muted: #64716d;
+    --site-green: #176b51;
+    --site-green-dark: #11513f;
+    --site-green-pale: #e7f2ed;
+    --site-coral: #df775c;
+    --site-coral-pale: #fbede8;
+    --site-blue: #467895;
+    --site-blue-pale: #e9f2f5;
+    --site-line: #dce5e0;
+    --site-paper: #ffffff;
+}
+
+* { box-sizing: border-box; }
+.site-body { margin: 0; background: #f6f8f6; color: var(--site-ink); font-family: "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; line-height: 1.6; }
+.site-body button, .site-body input, .site-body select, .site-body textarea { font: inherit; }
+.site-body a { color: inherit; }
+.skip-link { position: absolute; left: 16px; top: -60px; z-index: 200; background: #fff; padding: 10px 14px; }
+.skip-link:focus { top: 10px; }
+.site-header { height: 76px; padding: 0 5.5%; display: flex; align-items: center; justify-content: space-between; gap: 28px; background: #fff; border-bottom: 1px solid var(--site-line); position: sticky; top: 0; z-index: 50; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; min-width: 190px; }
+.brand-mark { width: 38px; height: 38px; display: grid; place-items: center; background: var(--site-green); color: #fff; border-radius: 10px; font-weight: 800; }
+.brand strong, .brand small { display: block; }
+.brand strong { font-size: 16px; line-height: 1.3; }
+.brand small { color: var(--site-muted); font-size: 11px; }
+.primary-nav { height: 100%; display: flex; align-items: center; gap: 32px; }
+.primary-nav a { height: 100%; display: flex; align-items: center; border-bottom: 3px solid transparent; padding-top: 3px; text-decoration: none; color: #596661; font-size: 14px; white-space: nowrap; }
+.primary-nav a:hover, .primary-nav a[aria-current="page"] { color: var(--site-green-dark); border-color: var(--site-green); }
+.account-actions { display: flex; align-items: center; gap: 14px; min-width: 132px; justify-content: flex-end; }
+.account-name { color: var(--site-muted); font-size: 13px; max-width: 95px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.account-link, .text-action { color: var(--site-green-dark); background: transparent; border: 0; font-size: 13px; text-decoration: none; cursor: pointer; }
+.account-register { color: #fff; background: var(--site-green); padding: 7px 13px; border-radius: 5px; text-decoration: none; font-size: 13px; }
+.mobile-nav-toggle { display: none; border: 1px solid var(--site-line); background: #fff; border-radius: 5px; width: 40px; height: 38px; color: var(--site-ink); }
+.site-main { width: min(1160px, calc(100% - 64px)); margin: 0 auto; min-height: calc(100vh - 160px); }
+.site-footer { min-height: 70px; border-top: 1px solid var(--site-line); background: #fff; padding: 18px 5.5%; display: flex; justify-content: space-between; gap: 24px; color: var(--site-muted); font-size: 12px; }
+.eyebrow { margin: 0 0 9px; color: var(--site-green); text-transform: uppercase; font-size: 11px; font-weight: 800; letter-spacing: 0; }
+.home-intro { min-height: 440px; padding: 66px 5.5% 44px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 55px; align-items: center; background: #edf4ef; border-bottom: 1px solid var(--site-line); }
+.intro-copy h1 { margin: 0 0 17px; font-size: 42px; line-height: 1.22; letter-spacing: 0; font-weight: 750; }
+.intro-lead { max-width: 575px; color: #4f5e58; font-size: 16px; line-height: 1.85; margin: 0; }
+.intro-actions { display: flex; gap: 12px; align-items: center; margin-top: 26px; flex-wrap: wrap; }
+.button-primary, .button-quiet { min-height: 42px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 9px 17px; border-radius: 5px; border: 1px solid transparent; text-decoration: none; cursor: pointer; font-size: 13px; font-weight: 700; }
+.button-primary { background: var(--site-green); color: #fff; }
+.button-primary:hover { background: var(--site-green-dark); }
+.button-quiet { border-color: #c5d4cc; color: var(--site-green-dark); background: transparent; }
+.button-quiet:hover { background: #fff; }
+.button-wide { width: 100%; }
+.stage-note { display: flex; align-items: flex-start; gap: 8px; color: #66736d; font-size: 11px; max-width: 480px; margin: 20px 0 0; }
+.stage-dot { flex: 0 0 8px; height: 8px; margin-top: 5px; border-radius: 50%; background: var(--site-coral); }
+.intro-visual { position: relative; width: min(100%, 425px); height: 330px; margin: 0 auto; }
+.visual-orbit { position: absolute; border: 1px solid #b9d1c4; border-radius: 50%; left: 50%; top: 50%; transform: translate(-50%,-50%) rotate(-18deg); }
+.orbit-one { width: 350px; height: 210px; }
+.orbit-two { width: 260px; height: 300px; transform: translate(-50%,-50%) rotate(42deg); border-color: #e2b8a8; }
+.visual-core { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 134px; height: 134px; border-radius: 50%; background: var(--site-green); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 0 0 11px rgba(23,107,81,.08); }
+.visual-core span { font-size: 36px; font-weight: 800; line-height: 1.2; }
+.visual-core small { text-align: center; font-size: 11px; opacity: .88; }
+.visual-label { position: absolute; display: flex; align-items: center; gap: 8px; padding: 8px 11px; background: #fff; border: 1px solid var(--site-line); border-radius: 6px; box-shadow: 0 5px 18px rgba(31,61,48,.08); font-size: 11px; color: #40504a; }
+.visual-label i { width: 25px; height: 25px; display: grid; place-items: center; border-radius: 5px; font-style: normal; font-weight: 800; color: var(--site-green); background: var(--site-green-pale); }
+.label-cloth { left: 1%; top: 15%; }.label-food { right: 0; top: 26%; }.label-energy { left: 4%; bottom: 15%; }.label-material { right: 0; bottom: 13%; }
+.home-section { padding: 46px 0; }
+.section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 20px; }
+.section-heading h2, .page-heading h1 { margin: 0; letter-spacing: 0; }
+.section-heading h2 { font-size: 23px; line-height: 1.35; }
+.section-heading > p { max-width: 420px; color: var(--site-muted); font-size: 13px; margin: 0; }
+.inline-link { color: var(--site-green-dark); text-decoration: none; font-weight: 700; font-size: 12px; }
+.inline-link:hover { text-decoration: underline; }
+.topic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.topic-card { min-height: 148px; padding: 19px 20px; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; text-decoration: none; border: 1px solid transparent; border-radius: 7px; }
+.topic-green { background: #e6f0e9; border-color: #d4e4d9; }.topic-coral { background: var(--site-coral-pale); border-color: #f0d9d0; }.topic-blue { background: var(--site-blue-pale); border-color: #d7e4e9; }
+.topic-index { color: var(--site-muted); font-size: 10px; font-weight: 700; }
+.topic-card strong { font-size: 17px; line-height: 1.45; }
+.topic-card > span:last-child { color: #68756f; font-size: 12px; }
+.path-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.path-card { min-height: 150px; padding: 23px; border: 1px solid var(--site-line); border-radius: 7px; background: #fff; display: flex; gap: 18px; text-decoration: none; }
+.path-card:hover { border-color: #a5c4b4; }
+.path-icon { flex: 0 0 42px; height: 42px; border-radius: 7px; display: grid; place-items: center; font-weight: 800; }
+.icon-learning { color: var(--site-green); background: var(--site-green-pale); }.icon-industry { color: #a24e38; background: var(--site-coral-pale); }
+.path-card h3 { margin: 0 0 7px; font-size: 16px; }.path-card p { color: var(--site-muted); font-size: 12px; margin: 0 0 14px; }
+.home-note { margin: 0 0 55px; padding: 15px 17px; display: flex; align-items: center; gap: 12px; border-left: 3px solid #d58a55; background: #fff6ed; color: #644b38; }
+.home-note p { flex: 1; margin: 0; font-size: 12px; }.home-note a { color: #8a5130; white-space: nowrap; font-size: 12px; font-weight: 700; }.note-symbol { width: 21px; height: 21px; display: grid; place-items: center; border-radius: 50%; border: 1px solid #bc7950; font-weight: 800; font-size: 12px; }
+.page-heading { padding: 43px 0 30px; display: flex; align-items: end; justify-content: space-between; gap: 30px; border-bottom: 1px solid var(--site-line); }
+.page-heading h1 { font-size: 31px; }.page-heading p:not(.eyebrow) { margin: 9px 0 0; max-width: 700px; color: var(--site-muted); font-size: 14px; }.page-heading .eyebrow { margin-bottom: 6px; }
+.content-section { padding: 34px 0; }.review-label, .trial-badge, .local-label, .admin-label { padding: 5px 9px; border-radius: 4px; background: #eef3ef; color: #58675f; font-size: 11px; white-space: nowrap; }.review-label i { display: inline-block; width: 7px; height: 7px; margin-right: 6px; border-radius: 50%; background: #d58a55; }
+.lesson-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 13px; }
+.lesson-card { min-height: 225px; padding: 19px; border: 1px solid var(--site-line); border-radius: 7px; background: #fff; display: flex; flex-direction: column; align-items: flex-start; }
+.lesson-feature { background: #edf4ef; border-color: #d9e7de; }.lesson-case { background: #f3f7f8; border-color: #dce7eb; }.lesson-action { background: #fbf1ed; border-color: #f1ded5; }
+.lesson-type { color: #66736d; font-size: 10px; font-weight: 700; }.lesson-card h3 { margin: 9px 0 8px; font-size: 16px; line-height: 1.45; }.lesson-card p { margin: 0 0 15px; color: #5d6b65; font-size: 12px; line-height: 1.75; }.lesson-card small { margin-top: auto; color: #6c7973; font-size: 10px; }
+.lesson-flow { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 4px; margin: 2px 0 12px; }.lesson-flow span { padding: 6px 8px; background: #fff; border: 1px solid #dce5df; border-radius: 4px; font-size: 10px; }.lesson-flow b { color: var(--site-green); font-size: 11px; }
+.lesson-complete, .save-tip { margin-top: 12px; border: 1px solid #a8c0b2; background: transparent; color: var(--site-green-dark); padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 11px; }.lesson-complete.is-done { background: var(--site-green); color: #fff; border-color: var(--site-green); }
+.case-band { display: grid; grid-template-columns: .8fr 1.2fr; gap: 36px; align-items: center; margin: 4px 0; padding: 28px; border-radius: 7px; background: #f0f3f1; }.case-heading h2 { margin: 0 0 9px; font-size: 21px; }.case-heading p:last-child { color: var(--site-muted); font-size: 12px; margin: 0; }.case-empty { min-height: 125px; padding: 19px; border: 1px dashed #afc1b7; background: rgba(255,255,255,.72); display: flex; flex-direction: column; justify-content: center; gap: 6px; }.case-mark { color: var(--site-green); font-size: 10px; font-weight: 800; }.case-empty strong { font-size: 14px; }.case-empty > span:last-child { color: var(--site-muted); font-size: 11px; }
+.calculator-layout { display: grid; grid-template-columns: 1fr 420px; gap: 60px; align-items: start; padding: 50px 0; }.calculator-intro h2, .industry-method h2 { margin: 0 0 12px; font-size: 26px; }.calculator-intro > p:not(.eyebrow) { max-width: 530px; color: var(--site-muted); font-size: 13px; line-height: 1.8; }.method-box { margin-top: 23px; padding: 15px 17px; border-left: 3px solid var(--site-blue); background: var(--site-blue-pale); }.method-box strong { font-size: 12px; }.method-box p { margin: 5px 0 0; color: #506571; font-size: 11px; }
+.calc-form { padding: 22px; border: 1px solid var(--site-line); border-radius: 7px; background: #fff; display: flex; flex-direction: column; gap: 10px; }.form-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 9px; }.form-title h3 { margin: 0; font-size: 16px; }.form-title span { padding: 4px 7px; color: #7c563e; background: #fbf1e7; font-size: 10px; border-radius: 4px; }
+.calc-form label, .admin-form label { margin-top: 4px; color: #46554e; font-size: 11px; font-weight: 700; }.calc-form label span { float: right; color: var(--site-muted); font-weight: 400; }.calc-form select, .calc-form input, .action-form input, .admin-form input, .admin-form textarea, .admin-form select { width: 100%; min-height: 40px; padding: 9px 10px; border: 1px solid #cfd9d3; border-radius: 4px; background: #fff; color: var(--site-ink); outline: none; font-size: 12px; }.calc-form input:focus, .calc-form select:focus, .admin-form input:focus, .admin-form textarea:focus, .admin-form select:focus, .action-form input:focus { border-color: var(--site-green); box-shadow: 0 0 0 2px rgba(23,107,81,.12); }.input-with-unit { display: flex; align-items: stretch; }.input-with-unit input { min-width: 0; border-radius: 4px 0 0 4px; }.input-with-unit > span { min-width: 58px; display: grid; place-items: center; padding: 0 8px; border: 1px solid #cfd9d3; border-left: 0; border-radius: 0 4px 4px 0; background: #f2f5f3; color: #65736c; font-size: 11px; }.calc-result { min-height: 68px; padding: 13px; border: 1px solid #d8e5dd; background: #f2f7f3; border-radius: 4px; }.calc-result > span { color: var(--site-muted); font-size: 11px; }.calc-result strong { display: block; color: var(--site-green-dark); font-size: 22px; line-height: 1.3; }.calc-result small { display: block; margin-top: 5px; color: var(--site-muted); font-size: 10px; }.factor-note, .privacy-note { color: #78837e; font-size: 10px; line-height: 1.6; }.source-note { margin: 0 0 55px; padding: 19px; border-top: 1px solid var(--site-line); border-bottom: 1px solid var(--site-line); }.source-note h2 { margin: 0 0 6px; font-size: 14px; }.source-note p { margin: 0; color: var(--site-muted); font-size: 11px; }
+.trial-badge { align-self: center; color: #8d4f36; background: var(--site-coral-pale); }.industry-intro { margin: 25px 0 18px; padding: 23px 25px; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 35px; background: #eaf2ee; border-radius: 7px; }.industry-kicker { color: var(--site-green); text-transform: uppercase; font-size: 10px; font-weight: 800; }.industry-intro h2 { margin: 6px 0; font-size: 20px; }.industry-intro p { max-width: 630px; margin: 0; color: var(--site-muted); font-size: 12px; }.boundary-list { min-width: 205px; display: grid; gap: 6px; }.boundary-list span { display: flex; justify-content: space-between; gap: 15px; color: #586760; font-size: 10px; }.boundary-list b { color: var(--site-ink); }
+.industry-workspace { display: grid; grid-template-columns: 380px 1fr; gap: 20px; align-items: stretch; }.industry-form { align-self: start; }.industry-result { padding: 23px; border: 1px solid var(--site-line); border-radius: 7px; background: #fff; }.empty-result { min-height: 330px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }.empty-result span { color: var(--site-green); font-size: 10px; font-weight: 800; }.empty-result h3 { margin: 8px 0 4px; font-size: 18px; }.empty-result p { max-width: 420px; color: var(--site-muted); font-size: 12px; }.industry-result .calc-result { margin: 15px 0; }.industry-result .formula { padding: 14px; background: #f4f6f5; font-family: Consolas, monospace; font-size: 12px; overflow-wrap: anywhere; }.industry-result ul { padding-left: 18px; color: var(--site-muted); font-size: 11px; }.industry-method { padding: 35px 0 55px; }.industry-method h2 { font-size: 21px; }.method-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }.method-columns article { padding: 15px 16px; border-top: 2px solid var(--site-green); background: #fff; }.method-columns article:nth-child(2) { border-color: var(--site-coral); }.method-columns article:nth-child(3) { border-color: var(--site-blue); }.method-columns h3 { margin: 0 0 6px; font-size: 13px; }.method-columns p { margin: 0; color: var(--site-muted); font-size: 11px; line-height: 1.75; }.save-row { min-height: 50px; padding-top: 14px; }
+.profile-grid { display: grid; grid-template-columns: 1fr 270px; gap: 24px; padding: 28px 0 55px; }.profile-main { display: grid; gap: 15px; }.profile-section, .profile-card { padding: 21px; border: 1px solid var(--site-line); border-radius: 6px; background: #fff; }.profile-section .section-heading { margin-bottom: 15px; }.profile-section .section-heading h2 { font-size: 18px; }.profile-section .eyebrow { margin-bottom: 4px; }.progress-empty { min-height: 85px; display: flex; align-items: center; gap: 15px; }.progress-ring { width: 48px; height: 48px; display: grid; place-items: center; border: 2px solid #9dbfad; border-radius: 50%; color: var(--site-green); font-weight: 800; }.progress-empty strong { font-size: 13px; }.progress-empty p { margin: 4px 0 0; color: var(--site-muted); font-size: 11px; }.action-form { display: flex; gap: 9px; }.action-form input { flex: 1; }.action-list { display: grid; gap: 7px; margin-top: 12px; }.action-item { display: flex; align-items: center; gap: 9px; padding: 9px 10px; background: #f5f7f5; border-radius: 4px; font-size: 11px; }.action-item input { accent-color: var(--site-green); }.action-item .action-delete { margin-left: auto; border: 0; background: transparent; color: #8d6559; cursor: pointer; font-size: 10px; }.history-list { display: grid; gap: 8px; }.history-item { display: flex; justify-content: space-between; gap: 15px; padding: 10px 11px; border-bottom: 1px solid #edf0ee; font-size: 11px; }.history-item span { color: var(--site-muted); }.empty-state { color: var(--site-muted); font-size: 11px; }.private-data-note { margin: 12px 0 0; color: #78837e; font-size: 10px; }.profile-aside { display: grid; align-content: start; gap: 13px; }.profile-card { text-align: center; }.profile-avatar { width: 52px; height: 52px; margin: 0 auto 10px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: var(--site-green); font-size: 18px; font-weight: 800; }.profile-card h2 { margin: 0; font-size: 15px; }.profile-card p { color: var(--site-muted); font-size: 10px; }.record-boundary { text-align: left; }.record-boundary h3 { margin: 0 0 8px; font-size: 13px; }.account-summary { border-top: 1px solid var(--site-line); margin-top: 12px; padding-top: 10px; color: var(--site-muted); font-size: 10px; }.admin-section { text-align: left; }.admin-section > p { color: var(--site-muted); font-size: 11px; }.admin-label { background: #f8e9e2; color: #844a32; }.admin-form { display: grid; gap: 8px; padding: 14px; border: 1px solid var(--site-line); background: #f8faf8; }.admin-form textarea { resize: vertical; }.admin-item { padding: 12px 0; border-bottom: 1px solid var(--site-line); font-size: 11px; }.admin-item strong { display: block; }.admin-item a { color: var(--site-blue); overflow-wrap: anywhere; }.admin-actions { display: flex; gap: 8px; margin-top: 7px; }.admin-actions button { border: 1px solid var(--site-line); background: #fff; padding: 4px 8px; border-radius: 4px; color: var(--site-ink); cursor: pointer; font-size: 10px; }
+.curated-content { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 15px; }.curated-item { padding: 16px; border-left: 3px solid var(--site-green); background: #fff; }.curated-item h3 { margin: 0 0 5px; font-size: 14px; }.curated-item p { margin: 0 0 8px; color: var(--site-muted); font-size: 11px; }.curated-item a { font-size: 10px; color: var(--site-blue); }
+.ai-launcher { position: fixed; right: 22px; bottom: 22px; z-index: 70; width: 58px; height: 58px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; border: 0; border-radius: 50%; background: var(--site-green-dark); color: #fff; box-shadow: 0 5px 18px rgba(18,81,63,.24); cursor: pointer; }.ai-launcher span { font-size: 17px; font-weight: 800; line-height: 1.2; }.ai-launcher small { font-size: 8px; }.ai-panel { position: fixed; right: 22px; bottom: 92px; z-index: 70; width: min(350px, calc(100vw - 28px)); padding: 16px; border: 1px solid var(--site-line); border-radius: 7px; background: #fff; box-shadow: 0 15px 45px rgba(20,45,34,.18); }.ai-panel[hidden] { display: none; }.ai-panel-head { display: flex; justify-content: space-between; align-items: start; padding-bottom: 12px; border-bottom: 1px solid var(--site-line); }.ai-panel-head strong, .ai-panel-head span { display: block; }.ai-panel-head strong { font-size: 14px; }.ai-panel-head span { color: var(--site-muted); font-size: 10px; }.ai-close { border: 0; background: transparent; color: var(--site-muted); font-size: 22px; cursor: pointer; }.ai-status { display: flex; gap: 9px; margin: 15px 0; padding: 11px; background: #f5f7f5; }.status-dot { width: 8px; height: 8px; margin-top: 4px; border-radius: 50%; background: #d58a55; }.ai-status strong { font-size: 11px; }.ai-status p { margin: 3px 0 0; color: var(--site-muted); font-size: 10px; }.ai-input-label { color: var(--site-muted); font-size: 10px; }.ai-compose { display: flex; margin-top: 5px; }.ai-compose input { flex: 1; min-width: 0; padding: 9px; border: 1px solid var(--site-line); border-radius: 4px 0 0 4px; background: #f4f5f4; font-size: 11px; }.ai-compose button { padding: 0 10px; border: 1px solid var(--site-green); border-radius: 0 4px 4px 0; background: var(--site-green); color: #fff; font-size: 10px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+@media (max-width: 900px) {
+    .site-header { padding: 0 22px; gap: 15px; }.primary-nav { gap: 16px; }.primary-nav a { font-size: 12px; }.brand { min-width: auto; }.brand small { display: none; }.account-actions { min-width: auto; }.site-main { width: min(100% - 40px, 760px); }.home-intro { padding-inline: 28px; gap: 20px; }.intro-copy h1 { font-size: 35px; }.intro-visual { transform: scale(.9); }.calculator-layout { grid-template-columns: 1fr 370px; gap: 28px; }.industry-workspace { grid-template-columns: 340px 1fr; }
+}
+@media (max-width: 680px) {
+    .site-header { height: auto; min-height: 64px; position: sticky; flex-wrap: wrap; padding: 10px 16px; }.brand-mark { width: 34px; height: 34px; }.mobile-nav-toggle { display: block; margin-left: auto; }.account-actions { order: 1; }.primary-nav { display: none; order: 2; width: 100%; height: auto; flex-direction: column; align-items: stretch; gap: 0; border-top: 1px solid var(--site-line); }.primary-nav.is-open { display: flex; }.primary-nav a { height: 42px; border: 0; border-left: 3px solid transparent; padding: 0 10px; }.primary-nav a[aria-current="page"] { border-left-color: var(--site-green); background: var(--site-green-pale); }.account-name { display: none; }.site-main { width: calc(100% - 30px); }.site-footer { flex-direction: column; gap: 5px; padding: 14px 16px; }.home-intro { min-height: 0; padding: 38px 20px 25px; grid-template-columns: 1fr; gap: 2px; }.intro-copy h1 { font-size: 34px; }.intro-lead { font-size: 14px; }.intro-visual { width: 100%; height: 265px; transform: scale(.83); transform-origin: top center; margin-bottom: -25px; }.home-section { padding: 31px 0; }.section-heading { align-items: flex-start; flex-direction: column; gap: 8px; }.topic-grid, .path-grid, .lesson-grid, .method-columns, .curated-content { grid-template-columns: 1fr; }.topic-card { min-height: 118px; }.path-card { min-height: auto; padding: 17px; }.home-note { align-items: flex-start; flex-wrap: wrap; margin-bottom: 34px; }.home-note p { min-width: calc(100% - 42px); }.home-note a { margin-left: 33px; }.page-heading { padding: 30px 0 22px; align-items: flex-start; flex-direction: column; gap: 14px; }.page-heading h1 { font-size: 26px; }.page-heading p:not(.eyebrow) { font-size: 12px; }.content-section { padding: 25px 0; }.lesson-card { min-height: 0; }.case-band { grid-template-columns: 1fr; gap: 18px; padding: 19px; }.calculator-layout { grid-template-columns: 1fr; gap: 18px; padding: 32px 0; }.calculator-intro h2 { font-size: 23px; }.calc-form { padding: 17px; }.industry-intro { grid-template-columns: 1fr; gap: 16px; padding: 18px; }.industry-workspace { grid-template-columns: 1fr; }.industry-result { min-height: 200px; padding: 17px; }.empty-result { min-height: 180px; }.profile-grid { grid-template-columns: 1fr; gap: 14px; padding: 19px 0 38px; }.profile-aside { grid-row: 1; grid-template-columns: 1fr 1fr; }.profile-card { padding: 15px; }.profile-section { padding: 16px; }.action-form { flex-direction: column; }.action-form .button-primary { width: 100%; }.history-item { flex-direction: column; gap: 2px; }.admin-form { grid-template-columns: 1fr; }.ai-launcher { right: 14px; bottom: 14px; width: 52px; height: 52px; }.ai-panel { right: 14px; bottom: 76px; }.trial-badge { align-self: flex-start; }
+}
+
+[hidden] { display: none !important; }
+.site-header { color: var(--site-ink); flex-direction: row; }
+.site-body a.button-primary { color: white; }
+.site-body a.inline-link { color: var(--site-green-dark); }
+button:disabled { opacity: .65; cursor: default; }
+:focus-visible { outline: 2px solid var(--site-green); outline-offset: 3px; }
+
+</style>
+</head>
+<body class="site-body">
+    <a class="skip-link" href="#main-content">跳转到主要内容</a>
+    <header class="site-header">
+        <a class="brand" href="#index" aria-label="绿碳智算首页">
+            <span class="brand-mark" aria-hidden="true">绿</span>
+            <span><strong>绿碳智算</strong><small>公益环保学习与体验</small></span>
+        </a>
+        <button class="mobile-nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="打开导航">☰</button>
+        <nav id="primary-nav" class="primary-nav" aria-label="主导航">
+            <a href="#index" aria-current="page">首页</a>
+            <a href="#learning" >环保学习与生活体验</a>
+            <a href="#industry" >轻工业实验核算</a>
+            <a href="#my" >我的记录</a>
+        </nav>
+        <div class="account-actions"><span class="local-label">本机体验</span></div>
+    </header>
+    <main id="main-content" class="site-main" tabindex="-1"><div id="view-index" data-view="index">
+<section class="home-intro">
+    <div class="intro-copy"><p class="eyebrow">公益环保科普 · 浏览器体验</p><h1>把环境知识，<br>放进日常选择里。</h1><p class="intro-lead">从衣食住行开始理解碳排放，用清楚的资料、简单的练习和透明的估算，认识环境影响。</p><div class="intro-actions"><a class="button-primary" href="#learning">开始学习 <span aria-hidden="true">→</span></a><a class="button-quiet" href="#industry">体验轻工业核算</a></div><p class="stage-note"><span class="stage-dot"></span>当前为公益科普与功能试行，不提供企业认证、审计或合规结论。</p></div>
+    <div class="intro-visual" aria-label="衣物、食物、能源与循环利用构成的学习主题"><div class="visual-orbit orbit-one"></div><div class="visual-orbit orbit-two"></div><div class="visual-core"><span>碳</span><small>看见过程<br>理解影响</small></div><div class="visual-label label-cloth"><i>衣</i><span>衣物与纺织</span></div><div class="visual-label label-food"><i>食</i><span>食物与浪费</span></div><div class="visual-label label-energy"><i>能</i><span>日常用能</span></div><div class="visual-label label-material"><i>材</i><span>纸张与包装</span></div></div>
+</section>
+<section class="home-section learning-strip"><div class="section-heading"><div><p class="eyebrow">从一个具体问题开始</p><h2>本周学习主题</h2></div><a class="inline-link" href="#learning">浏览全部学习内容 <span aria-hidden="true">→</span></a></div><div class="topic-grid"><a class="topic-card topic-green" href="#learning/knowledge"><span class="topic-index">01 / 认识边界</span><strong>一项估算，究竟包含什么？</strong><span>了解核算对象、范围与遗漏项</span></a><a class="topic-card topic-coral" href="#learning/knowledge"><span class="topic-index">02 / 看懂资料</span><strong>排放因子为什么有版本？</strong><span>比较单位、地区、年份和来源</span></a><a class="topic-card topic-blue" href="#learning/life-calculator"><span class="topic-index">03 / 亲手体验</span><strong>从生活数据试做一次估算</strong><span>查看公式与示例系数的适用边界</span></a></div></section>
+<section class="home-section home-paths"><div class="section-heading"><div><p class="eyebrow">两个学习场景</p><h2>从生活体验到生产探索</h2></div><p>生活体验是公众科普入口；轻工业模块用于试行核算方法和了解实际需求。</p></div><div class="path-grid"><a href="#learning" class="path-card"><span class="path-icon icon-learning">学</span><div><h3>环保学习与生活体验</h3><p>知识卡、短课、案例、情境练习，以及生活碳排放估算。</p><span class="inline-link">进入学习 <b aria-hidden="true">→</b></span></div></a><a href="#industry" class="path-card"><span class="path-icon icon-industry">算</span><div><h3>轻工业实验核算</h3><p>在明确假设和数据来源的前提下，体验一个轻工业场景的参考估算。</p><span class="inline-link">查看试验场景 <b aria-hidden="true">→</b></span></div></a></div></section>
+<section class="home-note"><span class="note-symbol" aria-hidden="true">i</span><p>本网站展示的生活和轻工业计算均为学习体验。原型中的因子与口径仍需专业核验，页面会说明数据来源、假设与不确定性。</p><a href="#learning/method-note">了解估算边界</a></section>
+</div>
+<div id="view-learning" data-view="learning" hidden>
+<section class="page-heading"><div><p class="eyebrow">环境知识 · 案例 · 生活估算</p><h1>环保学习与生活体验</h1><p>从概念、案例和生活选择逐步理解环境影响。知识内容将标注资料来源与审核状态。</p></div><a class="button-quiet" href="#learning/life-calculator">去做生活估算 <span aria-hidden="true">↓</span></a></section>
+<section id="knowledge" class="content-section">
+    <div class="section-heading"><div><p class="eyebrow">学习单元</p><h2>先理解，再动手</h2></div><span class="review-label"><i></i>内容持续审核中</span></div>
+    <div class="lesson-grid">
+        <article class="lesson-card lesson-feature"><span class="lesson-type">基础概念 · 5 分钟</span><h3>碳排放估算的三个组成部分</h3><p>先确认活动数据，再选择适用的排放因子，并写明核算边界。公式看起来简单，输入与口径决定结果是否有意义。</p><div class="lesson-flow"><span>活动数据</span><b>×</b><span>排放因子</span><b>=</b><span>参考估算</span></div><small>方法说明 · 具体因子仍需按场景核对来源和版本</small><button class="lesson-complete" type="button" data-lesson="carbon-estimate-basics">标记为已学</button></article>
+        <article id="industry-scenario" class="lesson-card lesson-case"><span class="lesson-type">情境练习 · 3 分钟</span><h3>一件衣服的影响从哪里来？</h3><p>原料、纺纱、织造、染整、运输与使用阶段可能涉及不同数据。边界改变，估算覆盖的过程也会改变。</p><a href="#industry" class="inline-link">看看纺织场景 <span aria-hidden="true">→</span></a></article>
+        <article class="lesson-card lesson-action"><span class="lesson-type">生活技巧 · 可收藏</span><h3>让选择更容易比较</h3><p>比较两种选择前，先检查单位、时间范围和包含的生命周期阶段是否一致；条件不同的数字不要直接排大小。</p><button class="save-tip" type="button" data-tip="比较前检查单位、时间范围和核算边界">收藏这条提醒</button></article>
+    </div>
+</section>
+<section class="content-section case-band"><div class="case-heading"><p class="eyebrow">环境案例与现状</p><h2>看事实，也看出处</h2><p>案例库将优先采用政府部门、研究机构和公开报告资料，呈现发布年份、地区和原文链接。尚未完成来源审核的材料不会标成已核实结论。</p></div><div class="case-empty"><span class="case-mark">资料库</span><strong>案例内容正在整理与核验</strong><span>上线条目将显示来源机构、发布时间与原文</span></div></section>
+<section id="life-calculator" class="content-section calculator-layout">
+    <div class="calculator-intro"><p class="eyebrow">个人生活 · 参考估算</p><h2>试算一项生活数据</h2><p>选择一个类别并输入活动数据。此处系数沿用旧原型演示值，来源与适用口径尚待专业复核；结果只用于体验计算流程。</p><div id="method-note" class="method-box"><strong>计算边界</strong><p>当前每次只估算一个类别，不代表个人完整年度碳足迹。因子口径不一致时，不汇总比较。保存记录仅保存在当前浏览器。</p></div></div>
+    <form id="life-calc-form" class="calc-form">
+        <div class="form-title"><h3>生活场景估算</h3><span>体验模式</span></div>
+        <label for="life-type">选择活动类别</label><select id="life-type" required><option value="electricity" data-unit="kWh">家庭用电</option><option value="natural_gas" data-unit="m³">天然气</option><option value="gasoline" data-unit="L">汽油</option><option value="water" data-unit="吨">自来水</option><option value="meat" data-unit="kg">肉类消费</option><option value="rice" data-unit="kg">大米消费</option><option value="cloth" data-unit="件">衣物</option><option value="plastic" data-unit="kg">塑料制品</option></select>
+        <label for="life-amount">活动数据 <span id="life-unit">kWh</span></label><div class="input-with-unit"><input id="life-amount" type="number" min="0" step="any" placeholder="输入大于等于 0 的数值" required><span id="life-unit-suffix">kWh</span></div>
+        <button class="button-primary button-wide" type="submit">计算参考值</button>
+        <div id="life-result" class="calc-result" role="status" aria-live="polite"><span>结果会显示在这里</span></div>
+        <button id="save-life-result" class="button-quiet button-wide" type="button" hidden>保存到本机记录</button>
+        <small class="factor-note">演示因子：<span id="life-factor-value">0.5810</span> kg CO₂e / <span id="life-factor-unit">kWh</span> · 来源待核验</small>
+    </form>
+</section>
+<section class="source-note"><h2>内容与因子来源说明</h2><p>当前页面的学习模块为试行内容；演示系数尚未完成权威来源、版本及适用条件复核。正式发布前需补充可核查出处，并由具备相关知识的人员复核。</p></section>
+</div>
+<div id="view-industry" data-view="industry" hidden>
+<section class="page-heading"><div><p class="eyebrow">方法体验 · 轻工业探索</p><h1>轻工业实验核算</h1><p>从纺织服装生产中的一个活动数据开始，体验边界、单位和因子如何影响估算结果。</p></div><span class="trial-badge">实验功能</span></section>
+<section class="industry-intro"><div><span class="industry-kicker">试行场景 01</span><h2>纺织服装 · 外购电力</h2><p>当前仅演示电力使用对应的参考估算，不代表完整企业碳足迹。燃料、原料、运输、废水与供应链环节不包含在本试算中。</p></div><div class="boundary-list"><span><b>核算对象</b>单一生产场景</span><span><b>数据类型</b>用户自行输入</span><span><b>结果用途</b>学习体验</span></div></section>
+<section class="industry-workspace">
+    <form id="industry-calc-form" class="calc-form industry-form">
+        <div class="form-title"><h3>填写试验数据</h3><span>不自动上传</span></div>
+        <label for="industry-period">记录期间</label><input id="industry-period" type="text" placeholder="例如：2026年1月" maxlength="40">
+        <label for="industry-electricity">外购电量</label><div class="input-with-unit"><input id="industry-electricity" type="number" min="0" step="any" placeholder="输入电表或账单记录" required><span>kWh</span></div>
+        <label for="industry-output">同期产品产量 <span>可选，用于单位产品体验</span></label><div class="input-with-unit"><input id="industry-output" type="number" min="0" step="any" placeholder="填写大于 0 的产量"><span>kg</span></div>
+        <label for="industry-data-source">数据来源说明</label><select id="industry-data-source"><option>模拟数据</option><option>账单或台账记录</option><option>用户手动估计</option></select>
+        <button class="button-primary button-wide" type="submit">生成参考估算</button>
+        <p class="privacy-note">输入仅在当前浏览器计算，不会发送到服务器。</p>
+    </form>
+    <section id="industry-result" class="industry-result" aria-live="polite"><div class="empty-result"><span>结果区</span><h3>完成输入后查看试算</h3><p>计算公式、系数状态与未覆盖部分会一并展示。</p></div></section>
+</section>
+<section class="content-section industry-method"><div><p class="eyebrow">方法与资料状态</p><h2>先把不确定性说明白</h2></div><div class="method-columns"><article><h3>因子状态</h3><p>当前原型内的电力因子尚未完成地区、年份和权威来源复核。本页将标明为演示值，不应视为正式核算依据。</p></article><article><h3>边界限制</h3><p>本试验只覆盖外购电力估算。不包含完整组织边界、直接排放、其他能源、产品生命周期及第三方核验。</p></article><article><h3>结果用途</h3><p>可用于学习活动数据与因子的关系，不用于企业披露、合规申报、认证、审计或行业排名。</p></article></div><div class="save-row"><button id="save-industry-result" class="button-quiet" type="button" hidden>保存到本机记录</button></div></section>
+</div>
+<div id="view-my" data-view="my" hidden>
+<section class="page-heading"><div><p class="eyebrow">保存在此浏览器</p><h1>我的记录</h1><p>查看学习进度、估算历史和自己的环保行动计划。</p></div><span class="local-label">仅此设备可见</span></section>
+<div class="profile-grid">
+    <section class="profile-main">
+        <div class="profile-section"><div class="section-heading"><div><p class="eyebrow">最近学习</p><h2>我的学习进度</h2></div><a class="inline-link" href="#learning">继续学习 <span aria-hidden="true">→</span></a></div><div id="learning-progress" class="progress-empty"><span class="progress-ring">学</span><div><strong>从一个短课开始</strong><p>完成学习单元后，进度会保存在此浏览器。</p></div></div></div>
+        <div class="profile-section"><div class="section-heading"><div><p class="eyebrow">个人行动</p><h2>行动工具箱</h2></div><span class="local-label">仅本机保存</span></div><form id="action-form" class="action-form"><label class="sr-only" for="action-input">添加一项环保行动计划</label><input id="action-input" type="text" maxlength="120" placeholder="例如：本周自带水杯 3 次"><button class="button-primary" type="submit">添加计划</button></form><div id="action-list" class="action-list"></div></div>
+        <div class="profile-section"><div class="section-heading"><div><p class="eyebrow">我的记录</p><h2>估算历史</h2></div><button id="clear-records" class="text-action" type="button">清空本机记录</button></div><div id="calculation-history" class="history-list"><p class="empty-state">当前浏览器还没有保存的估算。</p></div><p class="private-data-note">估算和行动计划只保存在当前浏览器；更换设备或清除浏览器数据后无法恢复。</p></div>
+    </section>
+    <aside class="profile-aside"><div class="profile-card"><span class="profile-avatar">访</span><h2>访客</h2><p>无需注册，即可体验</p></div><div class="profile-card record-boundary"><h3>记录与隐私</h3><p>估算在浏览器本机完成，不会上传服务器。</p><p>因子为原型演示值，尚待专业核验；结果不代表经核证的实际减排。</p></div></aside>
+</div>
+</div></main>
+    <footer class="site-footer"><span>绿碳智算 · 公益环保科普与碳排放体验</span><span>估算结果用于学习体验，不替代专业核查或官方认定。</span></footer>
+    
+    
+<script>
+(() => {
+    const factorData = {
+        electricity: { factor: 0.5810, unit: 'kWh', label: '家庭用电' },
+        natural_gas: { factor: 2.16, unit: 'm³', label: '天然气' },
+        gasoline: { factor: 2.39, unit: 'L', label: '汽油' },
+        water: { factor: 0.91, unit: '吨', label: '自来水' },
+        meat: { factor: 12.1, unit: 'kg', label: '肉类消费' },
+        rice: { factor: 2.7, unit: 'kg', label: '大米消费' },
+        cloth: { factor: 6.5, unit: '件', label: '衣物' },
+        plastic: { factor: 3.5, unit: 'kg', label: '塑料制品' }
+    };
+    const readLocal = (key, fallback = []) => {
+        try { return JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback)); }
+        catch { return fallback; }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const navButton = document.querySelector('.mobile-nav-toggle');
+        const nav = document.querySelector('#primary-nav');
+        navButton?.addEventListener('click', () => {
+            const isOpen = nav.classList.toggle('is-open');
+            navButton.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        const typeSelect = document.querySelector('#life-type');
+        const factorLabel = document.querySelector('#life-factor-value');
+        const unitLabel = document.querySelector('#life-unit');
+        const suffix = document.querySelector('#life-unit-suffix');
+        const factorUnit = document.querySelector('#life-factor-unit');
+        const lifeForm = document.querySelector('#life-calc-form');
+        const lifeResult = document.querySelector('#life-result');
+        const saveLife = document.querySelector('#save-life-result');
+        let currentLifeRecord = null;
+        const syncLifeFactor = () => {
+            if (!typeSelect) return;
+            const selected = typeSelect.value;
+            const option = typeSelect.selectedOptions[0];
+            const item = factorData[selected];
+            unitLabel.textContent = item.unit;
+            suffix.textContent = item.unit;
+            factorUnit.textContent = item.unit;
+            factorLabel.textContent = item.factor;
+            option.dataset.unit = item.unit;
+        };
+        typeSelect?.addEventListener('change', syncLifeFactor);
+        syncLifeFactor();
+        lifeForm?.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const amount = Number(document.querySelector('#life-amount').value);
+            if (!Number.isFinite(amount) || amount < 0) return;
+            const item = factorData[typeSelect.value];
+            const result = amount * item.factor;
+            currentLifeRecord = {
+                kind: '生活估算', label: item.label, value: result,
+                amount, unit: item.unit, factor: item.factor,
+                createdAt: new Date().toISOString(),
+                details: `${amount} ${item.unit} × ${item.factor} kg CO₂e/${item.unit}`
+            };
+            lifeResult.replaceChildren();
+            const output = document.createElement('strong');
+            output.textContent = `${result.toFixed(2)} kg CO₂e`;
+            const note = document.createElement('small');
+            note.textContent = `${currentLifeRecord.details} · 演示系数待核验`;
+            lifeResult.append(output, note);
+            saveLife.hidden = false;
+        });
+        saveLife?.addEventListener('click', () => {
+            if (!currentLifeRecord) return;
+            const records = readLocal('greenCarbon.calculations');
+            records.unshift(currentLifeRecord);
+            localStorage.setItem('greenCarbon.calculations', JSON.stringify(records.slice(0, 100)));
+            saveLife.textContent = '已保存到本机';
+            window.dispatchEvent(new Event('green-carbon-data-changed'));
+        });
+
+        const industryForm = document.querySelector('#industry-calc-form');
+        const industryResult = document.querySelector('#industry-result');
+        const saveIndustry = document.querySelector('#save-industry-result');
+        let currentIndustryRecord = null;
+        industryForm?.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const electricity = Number(document.querySelector('#industry-electricity').value);
+            const output = Number(document.querySelector('#industry-output').value);
+            if (!Number.isFinite(electricity) || electricity < 0 || (!Number.isNaN(output) && output < 0)) return;
+            const factor = 0.5810;
+            const emissions = electricity * factor;
+            const period = document.querySelector('#industry-period').value.trim() || '未填写期间';
+            const source = document.querySelector('#industry-data-source').value;
+            currentIndustryRecord = {
+                kind: '轻工业体验估算', label: `纺织服装 · ${period}`,
+                value: emissions, amount: electricity, unit: 'kWh', factor,
+                createdAt: new Date().toISOString(), dataSource: source,
+                details: `${electricity} kWh × ${factor} kg CO₂e/kWh`
+            };
+            industryResult.replaceChildren();
+            const heading = document.createElement('p');
+            heading.className = 'eyebrow';
+            heading.textContent = '单项参考估算 · 演示系数待核验';
+            const result = document.createElement('div');
+            result.className = 'calc-result';
+            const value = document.createElement('strong');
+            value.textContent = `${emissions.toFixed(2)} kg CO₂e`;
+            const resultNote = document.createElement('small');
+            resultNote.textContent = '仅覆盖外购电力演示，不代表企业总排放';
+            result.append(value, resultNote);
+            const formula = document.createElement('p');
+            formula.className = 'formula';
+            formula.textContent = currentIndustryRecord.details;
+            const caveat = document.createElement('ul');
+            const items = [
+                `数据来源类型：${source}。输入数据真实性尚未验证。`,
+                '因子来自旧原型，地区、年份与权威来源待复核。',
+                '未计入燃料、原料、运输、废水及其他供应链环节。'
+            ];
+            items.forEach((text) => { const li = document.createElement('li'); li.textContent = text; caveat.append(li); });
+            if (Number.isFinite(output) && output > 0) {
+                const intensity = document.createElement('p');
+                intensity.className = 'privacy-note';
+                intensity.textContent = `体验性单位值：${(emissions / output).toFixed(4)} kg CO₂e/kg 产品；仅供学习，不与其他口径比较。`;
+                industryResult.append(heading, result, formula, caveat, intensity);
+            } else {
+                industryResult.append(heading, result, formula, caveat);
+            }
+            saveIndustry.hidden = false;
+        });
+        saveIndustry?.addEventListener('click', () => {
+            if (!currentIndustryRecord) return;
+            const records = readLocal('greenCarbon.calculations');
+            records.unshift(currentIndustryRecord);
+            localStorage.setItem('greenCarbon.calculations', JSON.stringify(records.slice(0, 100)));
+            saveIndustry.textContent = '已保存到本机';
+            window.dispatchEvent(new Event('green-carbon-data-changed'));
+        });
+
+        document.querySelectorAll('.lesson-complete').forEach((button) => {
+            const done = new Set(readLocal('greenCarbon.lessons'));
+            if (done.has(button.dataset.lesson)) { button.classList.add('is-done'); button.textContent = '已完成'; }
+            button.addEventListener('click', () => {
+                const lessons = new Set(readLocal('greenCarbon.lessons'));
+                lessons.add(button.dataset.lesson);
+                localStorage.setItem('greenCarbon.lessons', JSON.stringify([...lessons]));
+                button.classList.add('is-done');
+                button.textContent = '已完成';
+                window.dispatchEvent(new Event('green-carbon-data-changed'));
+            });
+        });
+        document.querySelectorAll('.save-tip').forEach((button) => button.addEventListener('click', () => {
+            const tips = new Set(readLocal('greenCarbon.tips'));
+            tips.add(button.dataset.tip);
+            localStorage.setItem('greenCarbon.tips', JSON.stringify([...tips]));
+            button.textContent = '已收藏';
+        }));
+
+    });
+})();
+
+(() => {
+    const readLocal = (key, fallback = []) => {
+        try { return JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback)); }
+        catch { return fallback; }
+    };
+    const saveLocal = (key, value) => localStorage.setItem(key, JSON.stringify(value));
+    const el = (tag, text, className) => {
+        const node = document.createElement(tag);
+        if (text !== undefined) node.textContent = text;
+        if (className) node.className = className;
+        return node;
+    };
+
+    function renderPersonalData() {
+        const lessons = readLocal('greenCarbon.lessons');
+        const progress = document.querySelector('#learning-progress');
+        if (lessons.length && progress) {
+            progress.replaceChildren(el('span', `${lessons.length}`, 'progress-ring'));
+            const text = document.createElement('div');
+            text.append(el('strong', `已完成 ${lessons.length} 个学习单元`), el('p', '学习记录保存在当前浏览器。'));
+            progress.append(text);
+        }
+
+        const actions = readLocal('greenCarbon.actions');
+        const actionList = document.querySelector('#action-list');
+        if (actionList) {
+            actionList.replaceChildren();
+            actions.forEach((action, index) => {
+                const row = el('div', undefined, 'action-item');
+                const checkbox = document.createElement('input'); checkbox.type = 'checkbox'; checkbox.checked = action.done;
+                checkbox.setAttribute('aria-label', `完成行动：${action.text}`);
+                checkbox.addEventListener('change', () => { actions[index].done = checkbox.checked; saveLocal('greenCarbon.actions', actions); });
+                row.append(checkbox, el('span', action.text));
+                const remove = el('button', '删除', 'action-delete'); remove.type = 'button';
+                remove.addEventListener('click', () => { actions.splice(index, 1); saveLocal('greenCarbon.actions', actions); renderPersonalData(); });
+                row.append(remove); actionList.append(row);
+            });
+        }
+
+        const records = readLocal('greenCarbon.calculations');
+        const history = document.querySelector('#calculation-history');
+        if (history) {
+            history.replaceChildren();
+            if (!records.length) history.append(el('p', '当前浏览器还没有保存的估算。', 'empty-state'));
+            records.forEach((record) => {
+                const row = el('div', undefined, 'history-item');
+                const title = document.createElement('strong'); title.textContent = record.label;
+                const amount = document.createElement('span'); amount.textContent = `${Number(record.value).toFixed(2)} kg CO₂e · ${new Date(record.createdAt).toLocaleDateString('zh-CN')}`;
+                row.append(title, amount); history.append(row);
+            });
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        renderPersonalData();
+        document.querySelector('#action-form')?.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const input = document.querySelector('#action-input');
+            const text = input.value.trim();
+            if (!text) return;
+            const actions = readLocal('greenCarbon.actions');
+            actions.push({text, done: false}); saveLocal('greenCarbon.actions', actions);
+            input.value = ''; renderPersonalData();
+        });
+        document.querySelector('#clear-records')?.addEventListener('click', () => {
+            localStorage.removeItem('greenCarbon.calculations'); renderPersonalData();
+        });
+        window.addEventListener('green-carbon-data-changed', renderPersonalData);
+    });
+})();
+
+(() => {
+    const titles = {index:'首页', learning:'环保学习与生活体验', industry:'轻工业实验核算', my:'我的记录'};
+    function navigate() {
+        if (location.hash === '#main-content') {
+            document.querySelector('#main-content').focus();
+            return;
+        }
+        const [requested, anchor] = location.hash.slice(1).split('/');
+        const current = Object.hasOwn(titles, requested) ? requested : 'index';
+        document.querySelectorAll('[data-view]').forEach(view => { view.hidden = view.dataset.view !== current; });
+        document.querySelectorAll('#primary-nav a').forEach(link => {
+            if (link.getAttribute('href') === '#' + current) link.setAttribute('aria-current', 'page');
+            else link.removeAttribute('aria-current');
+        });
+        document.title = titles[current] + ' - 绿碳智算';
+        document.querySelector('#primary-nav').classList.remove('is-open');
+        document.querySelector('.mobile-nav-toggle').setAttribute('aria-expanded', 'false');
+        window.dispatchEvent(new Event('green-carbon-data-changed'));
+        const target = anchor ? document.getElementById(anchor) : null;
+        if (target && target.closest('[data-view]')?.dataset.view === current) target.scrollIntoView();
+        else window.scrollTo(0, 0);
+    }
+    window.addEventListener('hashchange', navigate);
+    document.addEventListener('DOMContentLoaded', navigate);
+})();
+
+</script>
+</body>
+</html>
